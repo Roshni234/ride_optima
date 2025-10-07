@@ -191,7 +191,7 @@ function App() {
             textAlign: "center",
           }}
         >
-          Dynamic Pricing — Dashboard
+          PriceOptima — Dashboard
         </Title>
       </Header>
 
@@ -202,7 +202,7 @@ function App() {
         {/* Test Single Record Section */}
         <Card
           title="Test Single Record"
-          style={{ marginBottom: 24, background: "#fafafa" }}
+          style={{ marginBottom: 24, background: "#fafafa", minWidth: "1200px", }}
         >
           <Space direction="vertical" style={{ width: "100%" }}>
             <label>Historical Cost of Ride</label>
@@ -237,11 +237,16 @@ function App() {
               onChange={(e) => updateField("Number_of_Drivers", Number(e.target.value))}
             />
 
-            <label>Vehicle Type</label>
-            <Input
-              value={jsonInput.Vehicle_Type}
-              onChange={(e) => updateField("Vehicle_Type", e.target.value)}
-            />
+           <label>Vehicle Type</label>
+<Select
+  value={jsonInput.Vehicle_Type}
+  onChange={(val) => updateField("Vehicle_Type", val)}
+  style={{ width: "100%" }}
+>
+  <Option value="Economy">Economy</Option>
+  <Option value="Premium">Premium</Option>
+</Select>
+
 
             <label>Time of Booking</label>
             <Select
@@ -291,14 +296,36 @@ function App() {
               Test Recommend
             </Button>
 
-            {singleResponse && (
-              <Alert
-                style={{ marginTop: 12 }}
-                message={`Recommended: ₹${singleResponse.price_recommended}, p=${singleResponse.p_complete_recommended}`}
-                type="success"
-                showIcon
-              />
-            )}
+           {singleResponse && (
+  <Alert
+    style={{
+      marginTop: 12,
+      padding: "16px",
+      fontSize: "18px",
+      fontWeight: "bold",
+      textAlign: "center",
+      background: "#d9f7be", // light green background
+      border: "2px solid #97eb6dff",
+      borderRadius: "8px",
+      
+    }}
+    message={
+      <span>
+        Recommended:&nbsp;
+        <span style={{ color: "black", fontWeight: "bold", fontSize: "22px" }}>
+          ₹{singleResponse.price_recommended}
+        </span>
+        ,&nbsp;p=
+        <span style={{ color: "black", fontSize: "22px", fontWeight: "bold" }}>
+          {singleResponse.p_complete_recommended}
+        </span>
+      </span>
+    }
+    type="success"
+    showIcon={false}
+  />
+)}
+
           </Space>
         </Card>
 
