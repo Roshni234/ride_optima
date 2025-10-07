@@ -356,6 +356,13 @@ class RecommendBatchResponse(BaseModel):
     n_rows: int
 
 # ====== Endpoints (your base endpoints preserved) ======
+
+@app.get("/")
+def root():
+    print("✅ FastAPI is running...")
+    return {"message": "FastAPI is running"}
+
+
 @app.get("/health")
 def health():
     return {"ok": True, "rows_loaded": int(len(df_base_all))}
