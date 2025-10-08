@@ -29,6 +29,8 @@ import {
   Bar,
   Legend,
 } from "recharts";
+import { Brush } from "recharts";
+
 
 const { Header, Content, Footer } = Layout;
 const { Title, Text } = Typography;
@@ -61,11 +63,7 @@ function App() {
       { title: "GM %", dataIndex: "gm_pct" },
       { title: "Bound Low", dataIndex: "bound_low" },
       { title: "Bound High", dataIndex: "bound_high" },
-      {
-        title: "Error",
-        dataIndex: "error",
-        render: (v) => (v ? <Text type="danger">{v}</Text> : null),
-      },
+     
     ],
     []
   );
@@ -376,6 +374,7 @@ function App() {
                       <YAxis />
                       <Tooltip />
                       <Line type="monotone" dataKey="reco" stroke="#1890ff" />
+                      <Brush dataKey="i" height={20} stroke="#8884d8" />
                     </LineChart>
                   </ResponsiveContainer>
                 </Card>
@@ -391,6 +390,8 @@ function App() {
                       <Legend />
                       <Bar dataKey="p_base" fill="#8884d8" name="Baseline" />
                       <Bar dataKey="p_reco" fill="#82ca9d" name="Recommended" />
+                      <Brush dataKey="i" height={20} stroke="#82ca9d" />
+
                     </BarChart>
                   </ResponsiveContainer>
                 </Card>
